@@ -15,10 +15,7 @@ jobs:
         steps:
             - name: Check out Git repository
               uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                node-version: '16'
-
+              
             - name: Install zetasql
               run: |
                 wget https://github.com/Matts966/zetasql-formatter/releases/latest/download/zetasql-formatter_linux_x86_64.zip
