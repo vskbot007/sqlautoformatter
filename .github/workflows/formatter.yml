@@ -1,20 +1,42 @@
-on: [push]
+name: Standardise MSSQL Format [FF-2107]
+
+on:
+  push:
+    branches-ignore:
+      - "release/*"
+      - "hotfix/*"
+    paths:
+      - '**.sql'
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
 
 jobs:
-  reformat-sql:
+  standardise-tsql-files:
+
+    if: |-
+        ${{github.event.pull_request.draft == false
+        && ( !startsWith(github.head_ref, 'release/')
+        && !startsWith(github.head_ref, 'hotfix/') )
+        && github.actor != 'dependabot[bot]'}}
     runs-on: ubuntu-latest
+
     steps:
-      # Checkout the source code so we have some files to look at.
-      - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-      # Run the reformat action
-      - name: Reformat SQL Files
+      - run: sudo chown -R "$USER:$USER" "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@v3.3.0
+        with:
+          fetch-depth: 0
+          token: ${{secrets.SOURCE_PUSH_TOKEN}}
+      - name: Reformat
         uses: credfeto/action-sql-format@v1.3.1
-      - name: Commit files
-        run: |
-          git config --local user.email "saikumarvutukuru123@gmail.com"
-          git config --local user.name "vskbot007"
-          git commit --all -m"Reformat SQL Files to common format." || true
-      - name: Push
-        run: git push "https://${{github.actor}}:${{secrets.SOURCE_PUSH_TOKEN}}@github.com/${{github.repository}}.git" "HEAD:${{ env.GIT_BRANCH }}"
+      - uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          commit_message: "[FF-2107] Reformat SQL Files to common format"
+          file_pattern: "*.sql"
+          commit_user_name: "vskbot007"
+          commit_user_email: "saikumarvutukuru123@gmail.com"
+          skip_dirty_check: false
