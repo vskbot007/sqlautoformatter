@@ -2,14 +2,14 @@ WITH
   -- This is the first test comment.
   Numbers AS (
     SELECT
-                          90 AS A,
+      90 AS A,
       2 AS B
     UNION ALL
     SELECT
       50,
-                        8
+      8
     UNION ALL
-                       SELECT
+    SELECT
       60,
       6
     UNION ALL
