@@ -1,7 +1,8 @@
-INSERT INTO Yearly_Orders
-SELECT
-  *
-FROM
-  Orders
-WHERE
-  Date <= 1 / 1 / 2018;
+CREATE TABLE Customers (
+          ID int NOT NULL,
+
+ 
+ 
+     Name varchar(80) NOT NULL,
+PRIMARY KEY (ID)
+);
