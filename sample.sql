@@ -5,14 +5,14 @@ WITH
       90 AS A,
       2 AS B
     UNION ALL
-                   SELECT
+    SELECT
       50,
       8
     UNION ALL
     SELECT
       60,
       6
-                  UNION ALL
+    UNION ALL
     SELECT
       50,
       10
