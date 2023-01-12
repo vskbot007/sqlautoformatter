@@ -12,12 +12,12 @@ WITH
     SELECT
       60,
       6
-                    UNION ALL
+    UNION ALL
     SELECT
       50,
       10
   ) -- This is the second test comment.
-                 SELECT
+SELECT
   A,
   B,
   CASE A
