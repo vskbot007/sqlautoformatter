@@ -1,9 +1,8 @@
 CREATE VIEW Failing_Students AS
-           SELECT
+SELECT
   S_NAME,
   Student_ID
-               FROM
+FROM
   STUDENT
-   
-   WHERE
-  GPA > 40;         
+WHERE
+  GPA > 40;
