@@ -1,6 +1,5 @@
-SELECT
-  call.*,
-  DATEDIFF("SECOND", call.start_time, call.end_time) AS call_duration
-FROM
-  call
-ORDER BY call.employee_id, call.start_time;
+CREATE TABLE Customers (
+ID int NOT NULL,
+          Name varchar(80) NOT NULL,
+PRIMARY KEY (ID)
+);
