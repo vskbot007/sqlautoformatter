@@ -1,4 +1,6 @@
-SELECT Item FROM Orders 
-      WHERE id = ALL
-(SELECT ID FROM Orders
-WHERE quantity > 50)
+SELECT
+  call.*,
+                   DATEDIFF("SECOND", call.start_time, call.end_time) AS call_duration
+               FROM
+  call
+ORDER BY call.employee_id, call.start_time;
