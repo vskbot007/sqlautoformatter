@@ -1,28 +1,26 @@
-name: EverSQL
-on: 
+name: "Formatting queries"
+on: # rebuild any PRs and master branch changes
     pull_request:
     push:
         branches:
             - master
-            
+
 permissions:
     contents: write
-     
+
 jobs:
-  automatic-sql-optimization:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v1
-    - name: Get changed files
-      id: files
-      uses: jitterbit/get-changed-files@v1
-    - name: Get optimization package
-      run: wget https://eversql.com/install/eversql_github_sql_file_optimizer.py
-    - name: Optimize SQL queries
-      run: |
-        for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "#####  Optimizing file: ${changed_file}  #####:"
-          python eversql_github_sql_file_optimizer.py ${changed_file} 5020040f35e520f775e02e951188b2bacbe73a0a033f3c8072325eb4bbe503d749d0cb0033210ac15709be193682b75a9bacea85ec216ee11d021462c5b3100d0e368858e2c4efb6b839726741b5f8dc23a548fc40ddfbf7b4dea4f669da90a75ada098cb03c2d034a28632486a7e989d7655 https://www.eversql.com/api/optimize
-        done
- 
+    test: # make sure the action works on a clean machine without building
+        name: Run auto formatter
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out Git repository
+              uses: actions/checkout@v3
+
+            - name: Install zetasql
+              run: |
+                wget https://github.com/Matts966/zetasql-formatter/releases/download/v1.6.5/zetasql-formatter_linux_x86_64.zip
+                sudo unzip zetasql-formatter_linux_x86_64.zip -d /usr/local/bin
+                rm zetasql-formatter_linux_x86_64.zip
+            - name: SQLAutoFormatter
+              uses: yoheikikuta/sql-autoformat-action@v1.0.2
