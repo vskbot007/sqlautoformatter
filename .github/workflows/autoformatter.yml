@@ -1,7 +1,3 @@
-            - name: SQLAutoFormatter
-              uses: yoheikikuta/sql-autoformat-action@v1.0.2
-              
-              
 name: EverSQL
 on: 
     pull_request:
