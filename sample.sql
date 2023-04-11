@@ -21,7 +21,10 @@ SELECT
   A,
   B,
   CASE A
-    WHEN 90 THEN 'red'
+    
+    
+    
+                            WHEN 90 THEN 'red'
     WHEN 50 THEN 'blue'
     ELSE 'green'
   END AS result
