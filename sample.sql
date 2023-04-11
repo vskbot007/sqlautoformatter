@@ -7,7 +7,7 @@ WITH
     UNION ALL
     SELECT
       50,
-                      8
+      8
     UNION ALL
     SELECT
       60,
@@ -17,11 +17,11 @@ WITH
       50,
       10
   ) -- This is the second test comment.
-                              SELECT
-        A,
+SELECT
+  A,
   B,
-              CASE A
-                  WHEN 90 THEN 'red'
+  CASE A
+    WHEN 90 THEN 'red'
     WHEN 50 THEN 'blue'
     ELSE 'green'
   END AS result
