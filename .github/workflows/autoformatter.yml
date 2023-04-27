@@ -4,23 +4,27 @@ on: # rebuild any PRs and master branch changes
     push:
         branches:
             - master
-
+            
 permissions:
-    contents: write
+  contents: write
 
 jobs:
-    test: # make sure the action works on a clean machine without building
-        name: Run auto formatter
-        runs-on: ubuntu-latest
+  format:
+    name: Format SQL Queries
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Check out Git repository
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            - name: Install zetasql
-              run: |
-                wget https://github.com/Matts966/zetasql-formatter/releases/download/v1.6.5/zetasql-formatter_linux_x86_64.zip
-                sudo unzip zetasql-formatter_linux_x86_64.zip -d /usr/local/bin
-                rm zetasql-formatter_linux_x86_64.zip
-            - name: SQLAutoFormatter
-              uses: yoheikikuta/sql-autoformat-action@v1.0.2
+      - name: Install zetasql
+        run: |
+          wget https://github.com/Matts966/zetasql-formatter/releases/download/v1.6.5/zetasql-formatter_linux_x86_64.zip
+          sudo unzip zetasql-formatter_linux_x86_64.zip -d /usr/local/bin
+          rm zetasql-formatter_linux_x86_64.zip
+
+      - name: Format SQL Queries
+        uses: yoheikikuta/sql-autoformat-action@v1.0.2
+        with:
+          args: --indent_size=4 # customize the formatting options as needed
+          path: / # specify the path to the SQL files
