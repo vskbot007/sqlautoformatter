@@ -16,7 +16,7 @@ jobs:
 
     steps:
         - name: checkout repo
-          uses: actions/checkout@v2.3.4
+          uses: actions/checkout@v3.5.2
         - name: Testing
           uses: erevear/snowsql-formatter-action@main
 
