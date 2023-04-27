@@ -15,14 +15,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        - name: checkout repo
+          uses: actions/checkout@v2.3.4
+        - name: Testing
+          uses: erevear/snowsql-formatter-action@main
+
+#       - name: Checkout code
+#         uses: actions/checkout@v2
       
-      - name: Format SQL
-        uses: sqltools/formatter-action@v1
-        with:
-          path: /
-          args: --indent-type=space --indent-size=2 --keyword-case=upper
+#       - name: Format SQL
+#         uses: sqltools/formatter-action@v1
+#         with:
+#           path: /
+#           args: --indent-type=space --indent-size=2 --keyword-case=upper
 
 
 #       - name: Install zetasql
