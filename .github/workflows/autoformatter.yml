@@ -21,7 +21,7 @@ jobs:
       - name: Format SQL
         uses: sqltools/formatter-action@v1
         with:
-          path: path/to/sql/files
+          path: /
           args: --indent-type=space --indent-size=2 --keyword-case=upper
 
 
