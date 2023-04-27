@@ -4,6 +4,12 @@ WITH
     SELECT
       90 AS A,
       2 AS B
+    
+    
+    
+    
+    
+    
     UNION ALL
     SELECT
       50,
