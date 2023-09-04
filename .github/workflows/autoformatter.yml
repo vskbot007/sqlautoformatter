@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -51,7 +51,7 @@ jobs:
 #           uses: erevear/snowsql-formatter-action@main
 
 # #       - name: Checkout code
-# #         uses: actions/checkout@v3
+# #         uses: actions/checkout@v4
       
 # #       - name: Format SQL
 # #         uses: sqltools/formatter-action@v1
